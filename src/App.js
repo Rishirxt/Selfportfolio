@@ -1,12 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { createClient } from "@supabase/supabase-js"; // Add this import
-
-// Initialize Supabase client
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
-const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,10 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className="bw-background">
-        <div className="animated-dots"></div>
-        <div className="animated-lines"></div>
-      </div>
+      <div className="bw-background"></div>
       <Header 
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
@@ -42,7 +33,7 @@ function App() {
       <Hero scrollToSection={scrollToSection} />
       <About />
       <Projects />
-      <Contact /> {/* The updated Contact component will now handle submission */}
+      <Contact />
       <Footer />
     </div>
   );
@@ -214,21 +205,14 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmissionStatus(null);
 
+    // Simulate form submission
     try {
-      const { data, error } = await supabase
-        .from("contacts")
-        .insert([{
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        }])
-        .select();
-
-      if (error) {
-        throw error;
-      }
-
-      console.log("Submission successful:", data);
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // For now, just show success message
+      // In a real implementation, you would send the data to your backend
+      console.log("Form submitted:", formData);
       setSubmissionStatus("success");
       setFormData({ name: "", email: "", message: "" });
     } catch (error) {

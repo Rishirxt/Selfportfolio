@@ -314,7 +314,7 @@ const Footer = () => {
             <i className="fab fa-twitter"></i>
           </a>
         </div>
-        <p>&copy; 2023 Rishi Ratheesh. All rights reserved.</p>
+        <p>&copy; 2025 Rishi Ratheesh. All rights reserved.</p>
       </div>
     </footer>
   );
